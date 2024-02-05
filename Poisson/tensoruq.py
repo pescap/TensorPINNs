@@ -12,6 +12,9 @@ parser = argparse.ArgumentParser(description="Set parameters")
 k = 2
 epochs = 10000
 seed = 1234
+sigma = 1
+N = 4000
+N_test = 1000
 
 dde.config.set_random_seed(seed)
 
@@ -32,10 +35,6 @@ class GeometryXGeometry:
         print("no uniform points")
         return self.random_points(n)
 
-
-sigma = 1
-N = 4000
-N_test = 1000
 
 geom = dde.geometry.Interval(0, 1)
 Geom = GeometryXGeometry(geom, k)
