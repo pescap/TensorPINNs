@@ -3,12 +3,20 @@
 
 ## About
 
+
+
 Experiments in:
 
 [PINNs for operator equations with stochastic data](https://arxiv.org/abs/2211.10344).
 
 
-These scripts can be trun with DeepXDE 1.7.1. A docker image for DeepXDE can be launched with Docker:
+This plug-in allows computing statistical moments for operator equations with stochastic data of the form:
+
+$$
+A u (\omega) = f (\omega) \text{ for } \omega \in \Omega.
+$$
+
+The scripts can be run with DeepXDE 1.7.1. A Docker image for DeepXDE can be launched with Docker:
 
 ```
  nvidia-docker run -p 8888:8888 pescapil/deepxde:latest
