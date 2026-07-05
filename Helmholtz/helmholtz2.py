@@ -139,7 +139,7 @@ u_exact = u_exact.reshape((Nx, Ny))
 u_sca = u_sca.reshape((Nx, Ny))
 
 result = np.sum(
-            [np.prod(v.get_shape().as_list()) for v in model.net.trainable_variables]
+            [np.prod(v.get_shape().as_list()) for v in __import__('tensorflow').compat.v1.trainable_variables()]
         )
 print('Theta:= ', result)
 

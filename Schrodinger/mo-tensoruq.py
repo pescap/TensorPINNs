@@ -124,7 +124,7 @@ losshistory, train_state = model.train(epochs=epochs)
 dde.saveplot(losshistory, train_state, issave=True, isplot=True)
  
 result = np.sum(
-            [np.prod(v.get_shape().as_list()) for v in model.net.trainable_variables]
+            [np.prod(v.get_shape().as_list()) for v in __import__('tensorflow').compat.v1.trainable_variables()]
         )
 print('Theta:= ', result)
 
@@ -144,4 +144,4 @@ name = 'results/mo_diag_x' + str(k)
 test = np.save(name,xx[:, 0:1])
 
 
-#print("# Parameters:", np.sum([np.prod(v.get_shape().as_list()) for v in tf.trainable_variables()]))
+#print("# Parameters:", np.sum([np.prod(v.get_shape().as_list()) for v in __import__('tensorflow').compat.v1.trainable_variables()]))
