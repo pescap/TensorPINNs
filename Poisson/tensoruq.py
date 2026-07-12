@@ -2,7 +2,7 @@
 
 import deepxde as dde
 import numpy as np
-from dde.backend import tf
+from deepxde.backend import tf
 from functools import reduce
 import argparse
 
