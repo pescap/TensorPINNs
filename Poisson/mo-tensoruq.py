@@ -29,7 +29,7 @@ import numpy as np
 class GeometryXGeometry:
     def __init__(self, geometry, k):
         self.geometry = geometry
-        self.dim = geometry.dim ** k
+        self.dim = geometry.dim * k
         self.k = k
     
     def random_points(self, n, random="pseudo"):
