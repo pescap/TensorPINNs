@@ -178,5 +178,19 @@ def paperkernels():
             yield f"{s} --arch v"
 
 
+def peakis():
+    for seed in range(3):
+        for k in (8, 10):
+            yield f"--problem logn --modes 4 --tuples 1 --arch lr --k {k} --rank 32 --peak 1 --nl 16000 --tag m4_r32_peak --seed {seed}"
+
+
+def ballw():
+    for seed in range(3):
+        b = f"--problem ball --modes 4 --width 128 --seed {seed} --arch lr --rank 64"
+        yield f"{b} --k 2 --grid 1000 --tag r64_g"
+        for k in (3, 4):
+            yield f"{b} --k {k} --peak 1 --nl 16000 --tag r64_peak"
+
+
 if __name__ == "__main__":
     print("\n".join(globals()[sys.argv[1]]()))

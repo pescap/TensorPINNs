@@ -265,6 +265,15 @@ def main(argv=None):
     T = truth()
     ntest = 4000 if cfg.arch == "v" and k * dom.d > 4 else 20000
     test = np.asarray(jax.jit(terms_of(blocks))(params, sampler(dom, k, ntest, soft)(jax.random.PRNGKey(10**6))))
+    if cfg.peak and cfg.tuples:
+        Z = np.asarray(pool[:500])
+        tz, _ = ref.lognormal_tuples(k, cfg.c2, cfg.modes, cfg.decay, cfg.amp, Z[..., 0].ravel(), np.arange(Z.shape[0] * k).reshape(-1, k), chunk=2000)
+        wz = 1 / Cnp(Z) ** 2
+        extra["err_peak"] = float(np.sqrt(np.sum(wz * (S * np.asarray(f(params, jnp.asarray(Z))) - tz) ** 2) / np.sum(wz * tz**2)))
+    if cfg.problem == "ball":
+        rng = np.random.default_rng(1)
+        W = geom.ball_points(rng, 500)[rng.integers(0, 500, (20000, k))]
+        extra["err_whole"] = rel(S * np.asarray(f(params, jnp.asarray(W))), ref.ball_exact(W, np, m=cfg.modes, p=cfg.decay, amp=cfg.amp))
     norm = float(np.sqrt(np.mean(T["full"] ** 2)))
     j = np.arange(k)
     stage = gamma ** -(k - j) * (gamma**-j if cfg.scale else 1.0) if cfg.arch == "mo" else np.array([gamma**-k])

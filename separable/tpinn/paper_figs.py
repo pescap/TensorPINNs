@@ -102,7 +102,7 @@ def moments(root, out):
               ("V-TPINN", "#1baf7a", "^", "-", lambda k: tables.err(pilot, ("logn", "", "v", "a1.0", k)))]
     for method in ("sparse", "dense", "mc"):
         label, color, marker = CLASSIC[method]
-        curves.append((label, color, marker, "--", lambda k, m=method: (tables.best(tables.classical(root, f"classical_k{k}_a1.0_c0.0"), m) or {}).get("err_full")))
+        curves.append((label, color, marker, "--", lambda k, m=method: (tables.best(tables.classical(root, f"classical_k{k}_a1.0_c0.0") + tables.dense(root, k), m) or {}).get("err_full")))
     label, color, marker = CLASSIC["tt"]
     curves.append((label, color, marker, "--", lambda k: (tables.tt(root, k, 8) or {}).get("err_full")))
     for label, color, marker, style, f in curves:

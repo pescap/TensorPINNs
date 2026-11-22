@@ -38,6 +38,7 @@ Classical baselines, each writing to `out/<name>/`:
 | `tpinn.classical_tt` | TT-cross on the data moment with the inverse applied per core |
 | `tpinn.classical_box` | sparse grid and sparse tensor on `[0,1]^d` |
 | `tpinn.classical_ball` | stochastic collocation and Monte Carlo with isoparametric P2 FEM on the ball |
+| `tpinn.sparse_ball` | sparse-tensor FEM (combination technique) on the ball, k=2 |
 
 ## Sweeps
 
@@ -52,6 +53,9 @@ TPINN_CODE=separable sbatch --export=ALL --array=1-$(wc -l < tasks.txt) separabl
 ```
 
 Without SLURM, run each line of `tasks.txt` with `python -m tpinn.run`.
+
+The table generator reads the `peakis` tasks from two output folders, `out/peakis` and `out/peaka30`
+(the same tasks on two GPU models), and the finer dense runs from `out/classical_dense`.
 
 ## Tables and figures
 
