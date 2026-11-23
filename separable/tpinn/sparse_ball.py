@@ -48,7 +48,7 @@ def main(argv=None):
     ap.add_argument("--decay", default=2.0, type=float)
     ap.add_argument("--amp", default=1.0, type=float)
     ap.add_argument("--base", default=2, type=int)
-    ap.add_argument("--top", default=5, type=int)
+    ap.add_argument("--top", default=4, type=int)
     ap.add_argument("--tuples", default=5000, type=int)
     ap.add_argument("--workers", default=16, type=int)
     ap.add_argument("--out", default=os.environ.get("TPINN_OUT", "out"))

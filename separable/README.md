@@ -39,7 +39,7 @@ Classical baselines, each writing to `out/<name>/`:
 | `tpinn.classical_tt` | TT-cross on the data moment with the inverse applied per core |
 | `tpinn.classical_box` | sparse grid and sparse tensor on `[0,1]^d` |
 | `tpinn.classical_ball` | stochastic collocation and Monte Carlo with isoparametric P2 FEM on the ball |
-| `tpinn.sparse_ball` | sparse-tensor FEM (combination technique) on the ball, k=2 |
+| `tpinn.sparse_ball` | sparse-tensor FEM (combination technique) on the ball, k=2; `--top 5` adds the fourth mesh (8 h on 32 cores) |
 
 ## Sweeps
 
