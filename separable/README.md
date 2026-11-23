@@ -27,7 +27,8 @@ TPINN_OUT=out/demo venv/bin/python -m tpinn.run --problem logn --arch lr --k 4 -
 
 Main options: `--problem {sep,logn,helm,heat,box,ball,hole}`, `--arch {v,mo,lr}`, `--k`,
 `--rank`, `--grid M` (tensor-product collocation, k=2), `--peak 1` (peak sampling),
-`--bc {hard,soft}`. `python -m tpinn.heat_ic` runs the heat equation with a random initial
+`--bc {hard,soft}` (soft: penalty on tuples with one point on the boundary, weight `--wbc`,
+sweep `soft`). `python -m tpinn.heat_ic` runs the heat equation with a random initial
 condition.
 
 Classical baselines, each writing to `out/<name>/`:

@@ -192,5 +192,22 @@ def ballw():
             yield f"{b} --k {k} --peak 1 --nl 16000 --tag r64_peak"
 
 
+def logntime():
+    for k in range(2, 7):
+        yield f"--problem logn --arch lr --k {k} --rank 32 --peak 1 --nl 16000 --tag a1.0_r32_peak --seed 0"
+
+
+def soft():
+    for seed in range(3):
+        for wbc in (1, 10, 100):
+            s = f"--arch lr --rank 32 --bc soft --wbc {wbc} --tag soft_w{wbc} --seed {seed}"
+            for prob in ("sep", "logn"):
+                for k in (2, 3, 4):
+                    yield f"--problem {prob} --k {k} {s}"
+            yield f"--problem hole --modes 4 --mesh 96 --k 2 --grid 1000 {s}"
+            yield f"--problem hole --modes 4 --mesh 96 --k 3 --peak 1 --nl 16000 {s}"
+            yield f"--problem helm --rhs gauss --k 2 --grid 1000 {s}"
+
+
 if __name__ == "__main__":
     print("\n".join(globals()[sys.argv[1]]()))

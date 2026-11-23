@@ -115,7 +115,7 @@ def make_mo(k, A, gamma, Cn, dom, cfg):
 def make_lr(k, A, gamma, Cn, dom, cfg):
     hard = cfg.bc == "hard"
     unit = 1 / gamma
-    amp = unit if cfg.scale and (hard or cfg.bctrace) else 1.0
+    amp = unit if cfg.scale else 1.0
     dirs = list(jnp.eye(dom.d))
     c0 = 1.0 / cfg.rank
 
@@ -150,10 +150,8 @@ def make_lr(k, A, gamma, Cn, dom, cfg):
             X = batch["x"]
             AP = factors(jax.vmap(lambda t: A(lambda y: phi(params, y), t, dirs)[1]), params, X)
             out = [batch["w"] * (jnp.prod(AP, 1) @ coef(params) - jax.vmap(Cn)(X))]
-        if not hard and cfg.bctrace:
+        if not hard:
             out.append(field(params, batch["xb"]) / unit**k)
-        elif not hard:
-            out.append(jax.vmap(lambda t: phi(params, t))(batch["b"]).ravel() / unit)
         return out
 
     return init, field, blocks

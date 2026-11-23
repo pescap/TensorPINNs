@@ -105,7 +105,7 @@ def lognormal(root):
     for label, method in (("Sparse tensor", "sparse"), ("Dense", "dense"), ("MC, $10^6$", "mc")):
         rows.append([label] + [cell(best(classical(root, f"classical_k{k}_a1.0_c0.0") + dense(root, k), method), method != "mc") for k in ks])
     rows.append(["TT-cross"] + [cell(tt(root, k, 8)) for k in ks])
-    top = tabular(["$J=8$"] + [f"$\\tk={k}$" for k in ks], rows)
+    top = tabular(["$m=8$"] + [f"$\\tk={k}$" for k in ks], rows)
     ks = (4, 6, 8, 10)
     key = lambda k: ("logn", "", "lr", "m4_r32_peak", k)
     six = {key(k): load(root, "peaka30")[key(k)] + load(root, "peakis")[key(k)] for k in (8, 10)}
@@ -116,7 +116,7 @@ def lognormal(root):
     for label, method in (("Sparse tensor", "sparse"), ("Dense", "dense"), ("MC, $10^6$", "mc")):
         rows.append([label] + [cell(best(classical(root, f"classical_k{k}_a1.0_m4"), method), method != "mc") for k in ks])
     rows.append(["TT-cross"] + [cell(tt(root, k, 4)) for k in ks])
-    return top + "\n\\medskip\n" + tabular(["$J=4$"] + [f"$\\tk={k}$" for k in ks], rows)
+    return top + "\n\\medskip\n" + tabular(["$m=4$"] + [f"$\\tk={k}$" for k in ks], rows)
 
 
 def kernels(root):

@@ -44,7 +44,6 @@ def parse(argv=None):
     ap.add_argument("--sequential", default=0, type=int)
     ap.add_argument("--weights", default="equal", choices=["equal", "legacy"])
     ap.add_argument("--wbc", default=1.0, type=float)
-    ap.add_argument("--bctrace", default=0, type=int)
     ap.add_argument("--cpos", default=0, type=int)
     ap.add_argument("--grid", default=0, type=int)
     ap.add_argument("--maskrms", default=0, type=int)
