@@ -209,5 +209,11 @@ def soft():
             yield f"--problem helm --rhs gauss --k 2 --grid 1000 {s}"
 
 
+def softbal():
+    for line in soft():
+        if "--wbc 1 " in line:
+            yield line.replace("--tag soft_w1 ", "--tag soft_bal --balance 1 ")
+
+
 if __name__ == "__main__":
     print("\n".join(globals()[sys.argv[1]]()))
